@@ -27,8 +27,8 @@ The Standalone version of this mthod is written in python3 and following librari
 
 ## Important Note
 In order to run the provided example, please download the following files:
-1. Database file required by annovar to map the coordinates with gene names. [Click Me](https://github.com/sumeetpatiyal/muthrp/raw/main/humandb.zip)
-2. Example VCF files. [Click Me](https://github.com/sumeetpatiyal/muthrp/raw/main/test.zip)
+1. Database file required by annovar to map the coordinates with gene names. [**Click Me**](https://github.com/sumeetpatiyal/muthrp/raw/main/humandb.zip)
+2. Example VCF files. [**Click Me**](https://github.com/sumeetpatiyal/muthrp/raw/main/test.zip)
 3. Download these files and unzip them.
 
 ## Minimum USAGE
