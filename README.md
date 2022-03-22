@@ -25,6 +25,12 @@ The Standalone version of this mthod is written in python3 and following librari
 - rpy2
 - tqdm
 
+## Important Note
+In order to run the provided example, please download the following files:
+1. Database file required by annovar to map the coordinates with gene names.[Link](https://github.com/sumeetpatiyal/muthrp/raw/main/humandb.zip)
+2. Example VCF files. [Link](https://github.com/sumeetpatiyal/muthrp/raw/main/test.zip)
+3. Download these files and unzip them.
+
 ## Minimum USAGE
 To know about the available option for the stanadlone, type the following command:
 ```
