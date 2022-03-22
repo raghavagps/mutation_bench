@@ -5,6 +5,7 @@ import sys
 import argparse
 import warnings
 import zipfile
+import pickle
 import pandas as pd
 import numpy as np
 from tqdm import tqdm
@@ -460,6 +461,57 @@ def full_run(clin,samp,loca,hudb,tech,ftyp):
     df_4['Regressor'] = ss_p
     df_4 = df_4[["Regressor","MAE","RMSE","R2","HR","p-value"]].reset_index(drop=True)
     return df4,df_4,df_c,df_mut_sample_clincal,df_complete
+def model_save_C(file1,file2,file3,tech,ftype):
+    df1 = file1
+    df2 = df1.sort_values('AUC_tr',ascending=False).reset_index(drop=True)
+    df3 = file2
+    xx = df3.Gene.tolist()
+    xx.append('label')
+    df4 = file3
+    df4['label'] = [1 if df4['OS.time'][i]<df4['OS.time'].median() else 0 for i in range(len(df4))]
+    df5 = df4[xx]
+    if df2['Classifier'][0] == 'DT' :
+        clf = DT(random_state=42,class_weight='balanced')
+    if df2['Classifier'][0] == 'RF' :
+        clf = RF(random_state=42,class_weight='balanced')
+    if df2['Classifier'][0] == 'ET' :
+        clf = ET(random_state=42,class_weight='balanced')
+    if df2['Classifier'][0] == 'SVC' :
+        clf = SVC(random_state=42,probability=True)
+    if df2['Classifier'][0] == 'KN' :
+        clf = KN()
+    if df2['Classifier'][0] == 'XGB' :
+        clf = XGB(random_state=42,class_weight='balanced')
+    if df2['Classifier'][0] == 'GNB' :
+        clf = GNB()
+    if df2['Classifier'][0] == 'LR' :
+        clf = LR(random_state=42,class_weight='balanced')
+    clf.fit(df5.iloc[:,:-1],df5.iloc[:,-1])
+    pickle.dump(clf,open(df2['Classifier'][0]+'_'+tech+'_'+ftype+'_Classification.pkl','wb'))
+def model_save_R(file1,file2,file3,tech,ftype):
+    df1 = file1
+    df2 = df1.sort_values('HR',ascending=False).reset_index(drop=True)
+    df3 = file2
+    xx = df3.Gene.tolist()
+    xx.append('OS.time')
+    df4 = file3
+    df5 = df4[xx]
+    if df2['Regressor'][0] == 'DTR' :
+        clf = DTR(random_state=42)
+    if df2['Regressor'][0] == 'RFR' :
+        clf = RFR(random_state=42)
+    if df2['Regressor'][0] == 'SVR' :
+        clf = SVR()
+    if df2['Regressor'][0] == 'LAS' :
+        clf = Lasso(random_state=42)
+    if df2['Regressor'][0] == 'RID' :
+        clf = Ridge(random_state=42)
+    if df2['Regressor'][0] == 'LR' :
+        clf = LinearRegression()
+    if df2['Regressor'][0] == 'ENT' :
+        clf = ElasticNet(random_state=42)
+    clf.fit(df5.iloc[:,:-1],df5.iloc[:,-1])
+    pickle.dump(clf,open(df2['Regressor'][0]+'_'+tech+'_'+ftype+'_Regression.pkl','wb'))
 ################Arguments##############
 in_file = args.input
 technique = args.tech
@@ -499,6 +551,8 @@ if os.path.isdir('humandb') == False:
 else:
     pass
 df1, df2, df3, df4, df5 = full_run(cl_file,samplef,in_file,db_file,technique,formatf)
+model_save_C(df1,df3,df4,technique,formatf)
+model_save_R(df2,df3,df4,technique,formatf)
 df1.to_csv("Classification_"+technique+"_"+formatf+"_"+o_file+'.csv',index=None)
 df2.to_csv("Regression_"+technique+"_"+formatf+"_"+o_file+'.csv',index=None)
 df3.to_csv("Top10_Correlated_genes_"+technique+"_"+formatf+"_"+o_file+'.csv',index=None)
