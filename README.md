@@ -1,7 +1,7 @@
 # **Prediction of high-risk cancer patients using mutation profiles**
 Benchmarking of mutation calling techniques by developing classification and regresion prediction models to predict the high-risk cancer patients.
 ## Introduction
-In this method, a user can predict the high-risk cancer patients using their mutation profiles in the form of Variant Calling Format (VCF) and Mutation Annotation Format (MAF) derived using four widely used mutation calling techniques, such as, MuTect2, MuSE, VarScan2, and SomaticSniper. A comparison can be made between the formats or between the techniques for same formats. In case of classification, the whole dataset is divided into 80:20 ratio, where 80% is used for training purpose, on which five fold cross-validation is appiled while training the model, whereas 20% dataset is used as testing dataset, which is kept to test the trained model. On the other hand, in case of regression, five-fold cross validation is applied on whole dataset. This method provides the following five files as output:
+In this method, a user can predict the high-risk cancer patients using their mutation profiles in the form of Variant Calling Format (VCF) and Mutation Annotation Format (MAF) derived using four widely used mutation calling techniques, such as, MuTect2, MuSE, VarScan2, and SomaticSniper. A comparison can be made between the formats or between the techniques for same formats. In case of classification, the whole dataset is divided into 80:20 ratio, where 80% is used for training purpose, on which five fold cross-validation is appiled while training the model, whereas 20% dataset is used as testing dataset, which is kept to test the trained model. On the other hand, in case of regression, five-fold cross validation is applied on whole dataset. This method provides the following seven files as output:
 
 1. **Classification results:** This file contains the performance measures for the seven different classifiers such as Decision tree (DT), Support Vector Classifier (SVC), Random Forest (RF), XGBoost (XGB), Gaussian Naive Bayes (GNB), Logistic Regression (LR), and k-nearest neighbors (KN). The perfomance of each classifiers is measured in terms of sensitivity (Sens), specificity (Spec), accuracy (Acc), Area Under the Receiver Operating Characteristic (AUC) F1-score (F1), Kappa, and Matthews Correlation Coefficient (MCC), for training (tr) and testing (te) dataset.
 
@@ -12,6 +12,10 @@ In this method, a user can predict the high-risk cancer patients using their mut
 4. **Correlation results:** This file contains the correlation results between number of mutations/gene/sample and overall survival time for all the genes sorted in order of coefficents.
 
 5. **Mutations per sample per gene file:** This file reports the number of mutations/gene/sample along with overall survival time (OS.time) and overall status (OS).
+
+6. **Best Classification Model:** This is model file which user can use to make the survival group prediction such as High-/low-risk group for unknown samples based on top-10 genes. Model with the highest AUROC will be saved.
+
+7. **Best Regression Model:** This is model file which user can use to make the survival time prediction for unknown samples based on top-10 genes. Model with the highest HR value will be saved.
 
 ## Standalone
 The Standalone version of this mthod is written in python3 and following libraries are necessary for the successful run:
@@ -106,4 +110,8 @@ Top10_Correlated_genes_MUTECT2_VCF_test_run.csv : This is the example output exh
 
 Classification_MUTECT2_VCF_test_run.csv		: This is example output for classification results.
 
-Regression_MUTECT2_VCF_test_run.csv		: This is example output for performanc of regression modelss.
+Regression_MUTECT2_VCF_test_run.csv		: This is example output for performanc of regression models.
+
+LR_Mutect2_VCF_Classification.pkl		: This is the pickle file for best classification model trained on top10 genes.
+
+ENT_Mutect2_VCF_Regression.pkl			: This is the pickle file for best regression model trained on top10 genes.
