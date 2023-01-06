@@ -121,3 +121,6 @@ Regression_MUTECT2_VCF_test_run.csv		: This is example output for performanc of 
 LR_Mutect2_VCF_Classification.pkl		: This is the pickle file for best classification model trained on top10 genes.
 
 ENT_Mutect2_VCF_Regression.pkl			: This is the pickle file for best regression model trained on top10 genes.
+
+# Reference
+Patiyal S, Dhall A, Raghava GPS. Prediction of risk-associated genes and high-risk liver cancer patients from their mutation profile: benchmarking of mutation calling techniques. <a href="https://pubmed.ncbi.nlm.nih.gov/35734767/">Biol Methods Protoc. 2022 May 27;7(1):bpac012. doi: 10.1093/biomethods/bpac012</a>
