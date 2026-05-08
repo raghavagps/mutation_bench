@@ -3,6 +3,9 @@ Benchmarking of mutation calling techniques by developing classification and reg
 ## Introduction
 In this method, a user can predict the high-risk cancer patients using their mutation profiles in the form of Variant Calling Format (VCF) and Mutation Annotation Format (MAF) derived using four widely used mutation calling techniques, such as, MuTect2, MuSE, VarScan2, and SomaticSniper. A comparison can be made between the formats or between the techniques for same formats. In case of classification, the whole dataset is divided into 80:20 ratio, where 80% is used for training purpose, on which five fold cross-validation is appiled while training the model, whereas 20% dataset is used as testing dataset, which is kept to test the trained model. On the other hand, in case of regression, five-fold cross validation is applied on whole dataset. This method provides the following seven files as output:
 
+# Citation
+Patiyal S, Dhall A, Raghava GPS. Prediction of risk-associated genes and high-risk liver cancer patients from their mutation profile: benchmarking of mutation calling techniques. <a href="https://pubmed.ncbi.nlm.nih.gov/35734767/">Biol Methods Protoc. 2022 May 27;7(1):bpac012. doi: 10.1093/biomethods/bpac012</a>
+
 1. **Classification results:** This file contains the performance measures for the seven different classifiers such as Decision tree (DT), Support Vector Classifier (SVC), Random Forest (RF), XGBoost (XGB), Gaussian Naive Bayes (GNB), Logistic Regression (LR), and k-nearest neighbors (KN). The perfomance of each classifiers is measured in terms of sensitivity (Sens), specificity (Spec), accuracy (Acc), Area Under the Receiver Operating Characteristic (AUC) F1-score (F1), Kappa, and Matthews Correlation Coefficient (MCC), for training (tr) and testing (te) dataset.
 
 2. **Regression results:** This file contains the performance measures for the seven different regressors such as Random Forest (RFR), Ridge (RID), Lasso (LAS), Decision Tree (DTR), Elastic Net (ENT), Linear Regression (LR), and Support Vector Regression (SVR). The performance for each regressor is calculated in terms of mean absolute error (MAE), root mean-square error (RMSE), R2, Hazard Ratio (HR), and p-value.
@@ -125,5 +128,4 @@ LR_Mutect2_VCF_Classification.pkl		: This is the pickle file for best classifica
 
 ENT_Mutect2_VCF_Regression.pkl			: This is the pickle file for best regression model trained on top10 genes.
 
-# Reference
-Patiyal S, Dhall A, Raghava GPS. Prediction of risk-associated genes and high-risk liver cancer patients from their mutation profile: benchmarking of mutation calling techniques. <a href="https://pubmed.ncbi.nlm.nih.gov/35734767/">Biol Methods Protoc. 2022 May 27;7(1):bpac012. doi: 10.1093/biomethods/bpac012</a>
+
