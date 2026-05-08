@@ -31,6 +31,9 @@ In order to run the provided example, please download the following files:
 2. Example VCF files. [**Click Me**](https://github.com/sumeetpatiyal/muthrp/raw/main/test.zip)
 3. Download these files and unzip them.
 
+# Zenodo
+https://doi.org/10.5281/zenodo.20034215
+
 ## Minimum USAGE
 To know about the available option for the stanadlone, type the following command:
 ```
